@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        .main{
+  background-color: blanchedalmond;     
+  width:100vw;
+  height:100vh;  
+  display: flex;
+  justify-content: center;
+  align-items: center;     
+        }
+        button{
+            border: 0px;
+            border:2px solid red;
+            width:50px;
+            cursor: pointer;
+            padding: 4px;
+            margin-top: 30px;
+        }
+        .box{
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            color:orange;
+            border-radius: 12px;
+            /* width:500px;
+            height:400px; */
+            padding: 12px;
+            font-size: 20px;
+        }
+        h1{
+            position: absolute;
+            text-align: center;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Joke Generator</h1>
+  <div class="main">
+    <div class="box">
+   <p></p>
+   <button class="j">Next</button>
+</div>
+</div>
+    <script>
+        let a=document.querySelector("p");
+
+        let b=document.querySelector(".j");
+      let c=document.querySelector(".box")
+b.addEventListener("click",function()
+{
+    axios.get("https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit")
+        .then(function(d)
+    {
+        if(d.data.joke)
+        {
+a.innerText=d.data.joke;
+        }
+        else{
+            a.innerText=d.data.setup;
+        }
+        
+  
+    });
+    c.prepend(a);
+})
+    
+    </script>
+</body>
+</html>
